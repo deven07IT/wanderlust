@@ -55,8 +55,8 @@ async function main() {
     await mongoose.connect(dbUrl);
 }
 
-app.get("/" , (req,res) =>{
-    res.send("run server");
+app.get("/", (req, res) => {
+    res.redirect("/listings");
 });
 
 app.set("view engine", "ejs");
