@@ -33,11 +33,22 @@ const userRouter = require("./routes/user.js");
 const dbUrl = process.env.ATLASDB_URL;
 
 
-main().then(()=>{
-    console.log("connect to db");
-}).catch((err) => {
-    console.log(err);
-});
+// main().then(()=>{
+//     console.log("connect to db");
+// }).catch((err) => {
+//     console.log(err);
+// });
+
+// main()
+//   .then(() => {
+//     console.log("connected to db");
+//     server.listen(8080, () => {
+//       console.log("Server running on 8080");
+//     });
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
 
 
 async function main() {
@@ -211,9 +222,24 @@ io.on("connection", (socket) => {
 
 });
 
-server.listen(8080, () => {
-  console.log("Server running on 8080");
-});
+// server.listen(8080, () => {
+//   console.log("Server running on 8080");
+// });
+
+const PORT = process.env.PORT || 8080;
+
+main()
+  .then(() => {
+    console.log("connected to db");
+
+    server.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 // app.post("/listings", wrapAsync(async (req, res) => {
 
