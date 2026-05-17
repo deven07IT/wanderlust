@@ -43,6 +43,7 @@ module.exports.index = async (req, res) => {
   }
 
   const allListings = await Listing.find({});
+  console.log("LISTINGS:", allListings);
 
   res.render("listings/index.ejs", {
     allListings
