@@ -507,14 +507,24 @@ body{
 
 <div
   class="wishlist-btn
-  <% if(currUser && currUser.wishlist.includes(listing._id)) { %>
+  <% if(
+currUser &&
+currUser.wishlist.some(
+(id) => id.toString() === listing._id.toString()
+)
+) { %>
     active-heart
   <% } %>"
   onclick="toggleWishlist('<%= listing._id %>', this)"
 >
 
   <i class="
-    <% if(currUser && currUser.wishlist.includes(listing._id)) { %>
+    <% if(
+currUser &&
+currUser.wishlist.some(
+(id) => id.toString() === listing._id.toString()
+)
+) { %>
       fa-solid
     <% } else { %>
       fa-regular
