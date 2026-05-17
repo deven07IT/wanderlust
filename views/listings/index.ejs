@@ -1,0 +1,692 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+
+body{
+  background:#f7f7f7;
+}
+
+/* HERO */
+.hero-wrapper{
+  position: relative;
+  height: 520px;
+  border-radius: 35px;
+  overflow: hidden;
+  margin-top: 1rem;
+  background:
+    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+    url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e");
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-content{
+  position:absolute;
+  top:18%;
+  left:50%;
+  transform:translateX(-50%);
+  text-align:center;
+  color:white;
+}
+
+.hero-content h1{
+  font-size:4rem;
+  font-weight:800;
+}
+
+.hero-content p{
+  font-size:1.3rem;
+}
+
+/* SEARCH BAR */
+
+.search-container{
+  position:absolute;
+  bottom:40px;
+  left:50%;
+  transform:translateX(-50%);
+  width:85%;
+}
+
+.search-bar{
+  background:white;
+  border-radius:35px;
+  padding:18px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 10px 30px rgba(0,0,0,0.12);
+  gap:1rem;
+}
+
+.search-section{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+  border-right:1px solid #eee;
+  padding-left:15px;
+}
+
+.search-section:last-child{
+  border-right:none;
+}
+
+.search-label{
+  font-size:0.85rem;
+  color:gray;
+  font-weight:600;
+}
+
+.search-input{
+  border:none;
+  outline:none;
+  font-size:1rem;
+  font-weight:700;
+  background:none;
+}
+
+.search-btn{
+  background:#ff385c;
+  color:white;
+  border:none;
+  padding:16px 30px;
+  border-radius:20px;
+  font-weight:700;
+  transition:0.3s;
+}
+
+.search-btn:hover{
+  transform:scale(1.05);
+  background:#e61e4d;
+}
+
+.voice-btn{
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  border:none;
+  background:black;
+  color:white;
+  font-size:1.2rem;
+  transition:0.3s;
+}
+
+.voice-btn:hover{
+  transform:scale(1.1);
+}
+
+/* FILTERS */
+
+.filters-wrapper{
+  background:white;
+  margin-top:2rem;
+  border-radius:30px;
+  padding:1.5rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  box-shadow:0 5px 20px rgba(0,0,0,0.06);
+}
+
+#filters{
+  display:flex;
+  gap:2rem;
+  flex-wrap:wrap;
+}
+
+.filter{
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+  font-weight:600;
+  color:#555;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.filter:hover{
+  transform:translateY(-3px);
+  color:#ff385c;
+}
+
+.filter i{
+  font-size:1.2rem;
+}
+
+.active-filter{
+  background:#ffe8ed;
+  color:#ff385c;
+  padding:12px 20px;
+  border-radius:20px;
+}
+
+/* TAX TOGGLE */
+
+.tax-toggle{
+  border:1px solid #ddd;
+  border-radius:30px;
+  padding:10px 22px;
+  background:white;
+}
+
+/* LISTING CARD */
+
+.listing-card{
+  border:none !important;
+  border-radius:28px !important;
+  overflow:hidden;
+  transition:0.35s;
+  background:white;
+  box-shadow:0 8px 30px rgba(0,0,0,0.08);
+  height:100%;
+}
+
+.listing-card:hover{
+  transform:translateY(-10px);
+}
+
+.card-image-wrapper{
+  position:relative;
+}
+
+.listing-img{
+  width:100%;
+  height:260px;
+  object-fit:cover;
+}
+
+/* BODY */
+
+.card-body{
+  padding:1rem;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  min-height:180px;
+}
+
+/* TITLE */
+
+.card-title{
+  font-size:1.35rem;
+  font-weight:700;
+  line-height:1.35;
+  margin-bottom:0.45rem;
+
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+
+  min-height:58px;
+}
+
+/* LOCATION */
+
+.location-text{
+  color:#777;
+  font-size:0.95rem;
+  margin-bottom:0.5rem;
+}
+
+/* PRICE */
+
+.price-text{
+  font-size:1.15rem;
+  font-weight:700;
+  margin-bottom:0.9rem;
+}
+
+.price-text span{
+  font-size:0.95rem;
+  font-weight:400;
+  color:#666;
+}
+
+/* BUTTON */
+
+.view-btn{
+  background:#ff385c !important;
+  border:none !important;
+  border-radius:14px !important;
+  padding:11px !important;
+  font-size:0.95rem;
+  font-weight:600;
+  transition:0.3s;
+}
+
+.view-btn:hover{
+  background:#e61e4d !important;
+  transform:translateY(-2px);
+}
+
+
+/* WISHLIST */
+
+.wishlist-btn{
+  position:absolute;
+  top:15px;
+  right:15px;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  background:rgba(0,0,0,0.45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-size:1.2rem;
+  cursor:pointer;
+  transition:0.3s;
+  backdrop-filter:blur(6px);
+}
+
+.wishlist-btn:hover{
+  background:#ff385c;
+  transform:scale(1.1);
+}
+
+/* RATING */
+
+.rating-badge{
+  position:absolute;
+  bottom:15px;
+  left:15px;
+  background:rgba(0,0,0,0.75);
+  color:white;
+  padding:7px 14px;
+  border-radius:16px;
+  font-size:0.95rem;
+  font-weight:700;
+}
+
+.tax-info{
+  display:none;
+  color:gray;
+  font-size:0.85rem;
+}
+
+
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  .hero-wrapper{
+    height:600px;
+  }
+
+  .hero-content h1{
+    font-size:2.4rem;
+  }
+
+  .search-bar{
+    flex-direction:column;
+    border-radius:25px;
+  }
+
+  .search-section{
+    width:100%;
+    border-right:none;
+    border-bottom:1px solid #eee;
+    padding-bottom:10px;
+  }
+
+  .search-section:last-child{
+    border-bottom:none;
+  }
+
+  .search-btn{
+    width:100%;
+  }
+
+}
+
+.active-heart{
+  background:#ff385c !important;
+}
+
+.active-heart i{
+  color:white;
+}
+
+.wishlist-btn i{
+  transition:0.3s;
+}
+
+.wishlist-btn:hover i{
+  transform:scale(1.2);
+}
+
+</style>
+
+<!-- HERO -->
+
+<div class="container-fluid px-3">
+
+<div class="hero-wrapper">
+
+  <div class="hero-content">
+    <h1>Find your next stay</h1>
+    <p>Explore amazing places around the world</p>
+  </div>
+
+  <!-- SEARCH -->
+
+  <div class="search-container">
+
+    <form id="searchForm" action="/listings" method="GET">
+
+      <div class="search-bar">
+
+        <div class="search-section">
+          <span class="search-label">Where</span>
+
+          <input
+            id="searchInput"
+            type="text"
+            name="search"
+            class="search-input"
+            placeholder="Search destinations"
+          >
+        </div>
+
+        <div class="search-section">
+          <span class="search-label">Check in</span>
+          <input type="date" class="search-input">
+        </div>
+
+        <div class="search-section">
+          <span class="search-label">Guests</span>
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Add guests"
+          >
+        </div>
+
+        <button class="search-btn">
+          Search
+        </button>
+
+        <button
+          type="button"
+          class="voice-btn"
+          onclick="startVoiceSearch()"
+        >
+          🎤
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+<!-- FILTERS -->
+
+<div class="filters-wrapper">
+
+  <div id="filters">
+
+    <div class="filter active-filter">
+      <i class="fa-solid fa-fire"></i>
+      Trending
+    </div>
+
+    <div class="filter">
+      <i class="fa-solid fa-bed"></i>
+      Rooms
+    </div>
+
+    <div class="filter">
+      <i class="fa-solid fa-city"></i>
+      Cities
+    </div>
+
+    <div class="filter">
+      <i class="fa-solid fa-mountain"></i>
+      Mountain
+    </div>
+
+    <div class="filter">
+      <i class="fa-solid fa-person-swimming"></i>
+      Pools
+    </div>
+
+    <div class="filter">
+      <i class="fa-solid fa-campground"></i>
+      Camping
+    </div>
+
+    <div class="filter">
+      <i class="fa-solid fa-ship"></i>
+      Boats
+    </div>
+
+  </div>
+
+  <div class="tax-toggle">
+    <input type="checkbox" id="flexSwitchCheckDefault">
+    <label for="flexSwitchCheckDefault"> Tax</label>
+  </div>
+
+</div>
+
+
+
+<!-- LISTINGS -->
+
+<div class="container mt-5">
+
+  <div class="row g-4">
+
+    <% for(let listing of allListings) { %>
+
+      <div class="col-lg-3 col-md-6 col-sm-12">
+
+        <div class="card listing-card">
+
+          <!-- IMAGE -->
+
+          <div class="card-image-wrapper">
+
+            <a href="/listings/<%= listing._id %>">
+
+              <img
+                src="<%= listing.image?.url || 'https://images.unsplash.com/photo-1505691938895-1758d7feb511' %>"
+                class="w-100 listing-img"
+              >
+
+            </a>
+
+            <!-- WISHLIST -->
+
+<div
+  class="wishlist-btn
+  <% if(currUser && currUser.wishlist.includes(listing._id)) { %>
+    active-heart
+  <% } %>"
+  onclick="toggleWishlist('<%= listing._id %>', this)"
+>
+
+  <i class="
+    <% if(currUser && currUser.wishlist.includes(listing._id)) { %>
+      fa-solid
+    <% } else { %>
+      fa-regular
+    <% } %>
+    fa-heart
+  "></i>
+
+</div>
+
+            <!-- RATING -->
+
+            <div class="rating-badge">
+              ⭐ 4.8
+            </div>
+
+          </div>
+
+          <!-- BODY -->
+
+          <div class="card-body">
+
+            <h5 class="card-title">
+              <%= listing.title %>
+            </h5>
+
+            <p class="location-text">
+              📍 <%= listing.location %>
+            </p>
+
+            <p class="price-text">
+              ₹ <%= listing.price.toLocaleString("en-IN") %>
+              <span style="font-size:1rem;font-weight:400;">
+                / night
+              </span>
+            </p>
+
+            <p class="tax-info">
+              +18% GST included
+            </p>
+
+            <a
+              href="/listings/<%= listing._id %>"
+              class="btn btn-danger w-100 view-btn"
+            >
+              View Stay
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    <% } %>
+
+  </div>
+
+</div>
+
+</div>
+
+<!-- TAX TOGGLE -->
+
+<script>
+
+let taxSwitch =
+document.getElementById("flexSwitchCheckDefault");
+
+taxSwitch.addEventListener("click", () => {
+
+  let taxInfo =
+  document.getElementsByClassName("tax-info");
+
+  for (let info of taxInfo) {
+
+    info.style.display =
+    (info.style.display === "inline")
+    ? "none"
+    : "inline";
+
+  }
+
+});
+
+</script>
+
+<!-- VOICE SEARCH -->
+
+<script>
+
+function startVoiceSearch() {
+
+  const recognition =
+  new (
+    window.SpeechRecognition ||
+    window.webkitSpeechRecognition
+  )();
+
+  recognition.lang = "en-US";
+
+  recognition.start();
+
+  recognition.onresult = function(event) {
+
+    const transcript =
+    event.results[0][0].transcript;
+
+    document.getElementById("searchInput").value =
+    transcript;
+
+    document.getElementById("searchForm").submit();
+  };
+
+  recognition.onerror = function(event) {
+
+    alert("Voice search error");
+    console.log(event.error);
+
+  };
+
+}
+
+</script>
+
+<script>
+
+async function toggleWishlist(listingId, el) {
+
+  try {
+
+    console.log("clicked");
+
+    const res = await fetch(`/wishlist/${listingId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+
+    const data = await res.json();
+
+    console.log(data);
+
+    if (!data.success) {
+      alert("Please login first");
+      return;
+    }
+
+    const icon = el.querySelector("i");
+
+    if (data.wishlisted) {
+
+      icon.classList.remove("fa-regular");
+      icon.classList.add("fa-solid");
+
+      el.classList.add("active-heart");
+
+    } else {
+
+      icon.classList.remove("fa-solid");
+      icon.classList.add("fa-regular");
+
+      el.classList.remove("active-heart");
+
+    }
+
+  } catch (err) {
+
+    console.log(err);
+
+  }
+
+}
+
+</script>

@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+  <div class="container">
+    
+    <a class="navbar-brand" href="/listings">
+      <i class="fa-regular fa-compass"></i> Wanderlust
+    </a>
+
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto align-items-center gap-2">
+
+        <li class="nav-item">
+          <a class="nav-link" href="/listings">Explore</a>
+        </li>
+
+        <% if (currUser && currUser.role === "admin") { %>
+        <li class="nav-item">
+          <a class="nav-link" href="/listings/new">
+            Add New Listing
+          </a>
+        </li>
+        <% } %>
+
+        <% if (currUser) { %>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/bookings/my">My Bookings</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/wishlist">❤️ Wishlist</a>
+        </li>
+
+        <li class="nav-item">
+          <span class="nav-link fw-bold">
+            Hi, <%= currUser.username %>
+          </span>
+        </li>
+
+        <li class="nav-item">
+          <a class="btn btn-outline-danger btn-sm rounded-pill" href="/logout">
+            Logout
+          </a>
+        </li>
+
+        <% } else { %>
+
+        <li class="nav-item">
+          <a class="btn btn-danger btn-sm rounded-pill" href="/login">Login</a>
+          <a class="btn btn-danger btn-sm rounded-pill" href="/signup">SignUp</a>
+        </li>
+
+        <li class="nav-item">
+          <button id="themeToggle" class="btn btn-sm btn-outline-dark ms-2">
+            🌙 Dark Mode
+          </button>
+        </li>
+
+        <% } %>
+
+      </ul>
+    </div>
+
+  </div>
+</nav>

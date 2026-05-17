@@ -1,0 +1,32 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container mt-4">
+  <h2>📋 Admin Booking Dashboard</h2>
+
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Hotel</th>
+        <th>Location</th>
+        <th>Check-In</th>
+        <th>Check-Out</th>
+        <th>Total Price</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% bookings.forEach(b => { %>
+        <tr>
+          <td><%= b.user.username %></td>
+          <td><%= b.listing.title %></td>
+          <td><%= b.listing.location %></td>
+          <td><%= b.checkIn || "N/A" %></td>
+          <td><%= b.checkOut || "N/A" %></td>
+          <td>₹<%= b.totalPrice || "N/A" %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+

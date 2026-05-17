@@ -1,0 +1,95 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container mt-4">
+
+  <h2 class="mb-4 fw-bold text-center">✨ My Bookings</h2>
+
+  <% if(bookings.length === 0) { %>
+    <div class="text-center mt-5">
+      <h4>No bookings yet 😢</h4>
+      <a href="/listings" class="btn btn-danger mt-3">Explore Listings</a>
+    </div>
+  <% } %>
+
+  <div class="row g-4">
+    <% for(let booking of bookings) { %>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card booking-card shadow-sm">
+
+          <!-- IMAGE -->
+          <img src="<%= booking.listing.image.url %>" 
+               class="card-img-top booking-img">
+
+          <!-- BODY -->
+          <div class="card-body">
+
+            <h5 class="card-title fw-bold">
+              <%= booking.listing.title %>
+            </h5>
+
+            <p class="text-muted mb-1">
+              📍 <%= booking.listing.location %>, <%= booking.listing.country %>
+            </p>
+
+            <p class="mb-1">
+              🗓 <b>From:</b> <%= booking.checkIn ? new Date(booking.checkIn).toDateString() : "N/A" %>
+            </p>
+
+            <p class="mb-1">
+             🗓 <b>To:</b> <%= booking.checkOut ? new Date(booking.checkOut).toDateString() : "N/A" %>
+            </p>
+
+            <p class="fw-bold text-danger mt-2">
+              ₹ <%= booking.totalPrice %>
+            </p>
+
+            <!-- BUTTONS -->
+<div class="booking-actions mt-3">
+
+
+
+  <form method="POST" action="/bookings/cancel/<%= booking._id %>">
+    <button type="submit" class="btn btn-danger">
+  Cancel
+</button>
+  </form>
+
+</div>
+
+          </div>
+
+        </div>
+      </div>
+
+    <% } %>
+  </div>
+
+</div>
+
+<!-- PREMIUM TOAST -->
+<div id="toast" class="toast-box">
+  <div class="toast-content">
+    <span class="toast-icon">✔</span>
+    <span class="toast-text">Booking Confirmed 🎉</span>
+  </div>
+</div>
+
+<script>
+const toast = document.getElementById("toast");
+
+if (window.location.search.includes("success=true")) {
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3000);
+}
+</script>
+
+
+<script>
+if (window.location.search.includes("success=true")) {
+  alert("🎉 Booking Confirmed!");
+}
+</script>

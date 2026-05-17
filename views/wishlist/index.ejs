@@ -1,0 +1,86 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container mt-5">
+
+  <h2 class="fw-bold mb-4">
+    ❤️ My Wishlist
+  </h2>
+
+  <div class="row g-4">
+
+    <% for(let listing of wishlist) { %>
+
+      <div class="col-lg-4">
+
+        <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+
+          <img
+            src="<%= listing.image.url %>"
+            style="height:250px; object-fit:cover;"
+          >
+
+          <div class="card-body">
+
+            <h5 class="fw-bold">
+              <%= listing.title %>
+            </h5>
+
+            <p>
+              📍 <%= listing.location %>
+            </p>
+
+            <p class="fw-bold">
+              ₹ <%= listing.price.toLocaleString("en-IN") %>
+            </p>
+
+            <div class="d-flex gap-2">
+
+  <a
+    href="/listings/<%= listing._id %>"
+    class="btn btn-danger w-100 rounded-pill"
+  >
+    View Stay
+  </a>
+
+  <button
+    class="btn btn-dark rounded-pill"
+    onclick="removeWishlist('<%= listing._id %>')"
+  >
+    ❌
+  </button>
+
+</div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    <% } %>
+
+  </div>
+
+</div>
+
+<script>
+
+async function removeWishlist(id) {
+
+  try {
+
+    await fetch(`/wishlist/${id}`, {
+      method: "POST"
+    });
+
+    location.reload();
+
+  } catch (err) {
+
+    console.log(err);
+
+  }
+
+}
+
+</script>
