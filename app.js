@@ -173,7 +173,7 @@ async function makeAdmin() {
   );
 }
 
-makeAdmin();
+// makeAdmin();
 
 
 
